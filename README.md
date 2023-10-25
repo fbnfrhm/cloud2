@@ -35,6 +35,17 @@ Initialisierung des Arbeitsverzeichnis:
 ```bash
 terraform init
 ```
+Erstellen / Ändern der Infrastruktur:
+```bash
+terraform apply
+```  
+> Terraform kann Änderungen *on the fly* übernehmen, indem man zuerst die Konfigurationsdatei entsprechend anpasst und dann `terraform apply` ein weiteres Mal ausführt.
+
+Löschen einer Infrastruktur:
+```bash
+terraform destroy
+```
+
 Formatierung der *.tf-Dateien anpassen:
 ```bash
 terraform fmt
@@ -47,8 +58,4 @@ Aktuellen Status abfragen:
 ```bash
 terraform state
 ```
-Erstellen / Ändern der Infrastruktur:
-```bash
-terraform apply
-```  
-> Terraform kann Änderungen *on the fly* übernehmen, indem man zuerst die Konfigurationsdatei entsprechend anpasst und dann `terraform apply` ein weiteres Mal ausführt.
+
