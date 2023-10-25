@@ -59,3 +59,16 @@ Aktuellen Status abfragen:
 terraform state
 ```
 
+## Variablen in Terraform
+```terraform
+variable "<VARIABLE_NAME>" {
+  description = "<DESCRIPTION>"
+  type        = <TYPE>
+  default     = "<DEFAULT_VALUE>"
+}
+```
+Variablen können mit dem `-var`-Flag flexibel gesetzt werden:
+```bash
+terraform apply -var "<VAR_NAME>=<VALUE>"
+```
+
