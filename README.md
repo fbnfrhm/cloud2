@@ -20,3 +20,37 @@ Die Aufgabe bezieht sich auf die automatische Bereitstellung einer Infrastruktur
         - Nachvollziehbarkeit von Änderungen der Ressourcen (durch Verwendung einer State-File)
         - Kollaboration durch die Zunahme einer Versionierungssoftware
 
+# Terraform & Amazon AWS
+## Prerequisites
+- Terraform CLI
+- AWS CLI
+
+### Festlegen der IAM credentials
+1. Öffnen der Datei `~/.aws/credentials`
+2. Einfügen der Informationen aus dem [Academy Learner Lab](https://awsacademy.instructure.com/courses/62501/modules/items/5523579)
+    - unter `AWS Details` --> `AWS CLI`
+
+## wichtige Befehle
+- Initialisierung des Arbeitsverzeichnis:
+```bash
+terraform init
+```
+- Formatierung der *.tf-Dateien anpassen:
+```bash
+terraform fmt
+```
+- semantische Validierung der Dateien:
+```bash
+terraform validate
+```
+- Aktuellen Status abfragen
+```bash
+terraform state
+```
+- Erstellen der Infrastruktur
+```bash
+terraform apply
+```
+
+
+
