@@ -31,26 +31,24 @@ Die Aufgabe bezieht sich auf die automatische Bereitstellung einer Infrastruktur
     - unter `AWS Details` --> `AWS CLI`
 
 ## wichtige Befehle
-- Initialisierung des Arbeitsverzeichnis:
+Initialisierung des Arbeitsverzeichnis:
 ```bash
 terraform init
 ```
-- Formatierung der *.tf-Dateien anpassen:
+Formatierung der *.tf-Dateien anpassen:
 ```bash
 terraform fmt
 ```
-- semantische Validierung der Dateien:
+semantische Validierung der Dateien:
 ```bash
 terraform validate
 ```
-- Aktuellen Status abfragen
+Aktuellen Status abfragen:
 ```bash
 terraform state
 ```
-- Erstellen der Infrastruktur
+Erstellen / Ändern der Infrastruktur:
 ```bash
 terraform apply
-```
-
-
-
+```  
+> Terraform kann Änderungen *on the fly* übernehmen, indem man zuerst die Konfigurationsdatei entsprechend anpasst und dann `terraform apply` ein weiteres Mal ausführt.
