@@ -72,3 +72,18 @@ Variablen können mit dem `-var`-Flag flexibel gesetzt werden:
 terraform apply -var "<VAR_NAME>=<VALUE>"
 ```
 
+## Output in Terraform
+```terraform
+output "<OUTPUT_NAME>" {
+  description = "<DESCRIPTION>"
+  value       = <OUTPUT_VALUE>
+}
+```
+Outputs können mit dem `output`-Befehl abgefragt werden:
+```bash
+# Alle Outputs
+terraform output
+# Einen speziellen Output
+terraform output <OUTPUT_NAME>
+```
+
