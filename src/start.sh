@@ -75,3 +75,4 @@ destroyTerraform
 echo ""
 echo "OUTPUT OF THE SCRIPT:"
 echo $OUTPUT
+echo "Test"
