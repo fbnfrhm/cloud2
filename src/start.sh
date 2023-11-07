@@ -46,7 +46,7 @@ checkDependencies() {
         sudo apt-get install -y terraform awscli
     fi
     logInfo "Checking if 'aws' is installed..."
-    which terraform > /dev/null
+    which aws > /dev/null
     if [ $? != 0 ]; then
         logWarn "AWS-CLI is not installed"
         sudo apt install -y awscli
