@@ -1,17 +1,33 @@
 #!/bin/bash
 
 ############### CONSTANTS ###############
-TERRAFORM_CONF_DIR="$(pwd)/terraform"
+TERRAFORM_CONF_DIR="$(pwd)/cloud2/src/terraform"
 USERNAME="admin"
+TERRAFORM_REPO="https://github.com/fbnfrhm/cloud2.git"
 OUTPUT=""
 
 ############ EXTRA FUNCTIONS ############
-logInfo () {
+logInfo() {
     echo "[INFO] $1"
 }
 
-logWarn () {
+logWarn() {
     echo "[WARNING] $1"
+}
+
+getRepo() {
+    logInfo "Remove old repository (to update the scripts)..."
+    sudo rm -rd cloud2
+    logInfo "Get scripts to setup infrastructure from GitHub..."
+    git clone $TERRAFORM_REPO
+    logInfo "Moving into the source folder of the repo..."
+    cd cloud2/src
+}
+
+startMessage() {
+    logWarn "############################## WARNING #####################################"
+    logWarn "Please make sure that your aws_credentials are set correctly in $HOME/.aws/credentials!"
+    logWarn "############################################################################"
 }
 
 checkTerraform() {
@@ -20,7 +36,12 @@ checkTerraform() {
     if [ $? != 0 ]; then
         logWarn "Terraform is not installed!"
         logInfo "Installing Terraform..."
-        sudo apt install terraform -y > /dev/null
+        sudo apt-get update && sudo apt-get install -y gnupg software-properties-common
+        wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
+        gpg --no-default-keyring --keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg --fingerprint
+        echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+        sudo apt update > /dev/null
+        sudo apt-get install -y terraform
     fi
 }
 
@@ -68,6 +89,8 @@ runUserScript() {
 
 
 ################## MAIN ##################
+startMessage
+getRepo
 checkTerraform
 applyTerraform
 runUserScript
