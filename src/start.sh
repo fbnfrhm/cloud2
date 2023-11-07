@@ -43,13 +43,16 @@ checkDependencies() {
         gpg --no-default-keyring --keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg --fingerprint
         echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
         sudo apt update > /dev/null
-        sudo apt-get install -y terraform awscli
+        sudo apt-get install -y terraform
     fi
     logInfo "Checking if 'aws' is installed..."
     which aws > /dev/null
     if [ $? != 0 ]; then
-        logWarn "AWS-CLI is not installed"
+        logWarn "AWS-CLI is not installed!"
+        logInfo "Installing AWS-CLI..."
         sudo apt install -y awscli
+        logInfo "Running initial configuration for AWS-CLI..."
+        aws configure
     fi
 
 }
