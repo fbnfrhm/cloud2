@@ -27,10 +27,12 @@ getRepo() {
 startMessage() {
     logWarn "############################## WARNING #####################################"
     logWarn "Please make sure that your aws_credentials are set correctly in $HOME/.aws/credentials!"
+    logWarn "Please make sure the file '$HOME/.ssh/id_rsa.pub' exists."
+    logWarn "If not create it using the command 'ssh-keygen' "
     logWarn "############################################################################"
 }
 
-checkTerraform() {
+checkDependencies() {
     logInfo "Checking if 'terraform' is installed..."
     which terraform > /dev/null
     if [ $? != 0 ]; then
@@ -41,8 +43,15 @@ checkTerraform() {
         gpg --no-default-keyring --keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg --fingerprint
         echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
         sudo apt update > /dev/null
-        sudo apt-get install -y terraform
+        sudo apt-get install -y terraform awscli
     fi
+    logInfo "Checking if 'aws' is installed..."
+    which terraform > /dev/null
+    if [ $? != 0 ]; then
+        logWarn "AWS-CLI is not installed"
+        sudo apt install -y awscli
+    fi
+
 }
 
 applyTerraform() {
@@ -91,7 +100,7 @@ runUserScript() {
 ################## MAIN ##################
 startMessage
 getRepo
-checkTerraform
+checkDependencies
 applyTerraform
 runUserScript
 destroyTerraform
