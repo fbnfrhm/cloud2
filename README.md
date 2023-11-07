@@ -87,3 +87,10 @@ terraform output
 terraform output <OUTPUT_NAME>
 ```
 
+# Anwendung `./start.sh`
+## bekannte Probleme
+- Skript ist nur auf Ubuntu-Systeme zugeschnitten
+- Skript lädt jedes mal aufs neue das GitHub-Repo runter
+- Die Konfiguration der AWS-CLI funktioniert nur bedingt im Skript
+  - Ich vermute das liegt an den Eigenarten des AWS Lab-Credentials
+- Beim Abbruch des Skripts werden die Instanzen nicht zurückgesetzt und laufen weiter
