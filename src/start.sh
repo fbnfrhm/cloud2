@@ -30,6 +30,8 @@ startMessage() {
     logWarn "Please make sure the file '$HOME/.ssh/id_rsa.pub' exists."
     logWarn "If not create it using the command 'ssh-keygen' "
     logWarn "############################################################################"
+    logInfo "Press ENTER to continue or CTRL+C to exit"
+    read
 }
 
 checkDependencies() {
