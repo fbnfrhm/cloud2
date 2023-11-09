@@ -61,6 +61,7 @@ checkDependencies() {
 
 applyTerraform() {
     logInfo "Applying terraform config..."
+    logWarn "This leads to an error, you don't have to worry about it!"
     cd $TERRAFORM_CONF_DIR
     terraform apply -auto-approve 2>&1 >/dev/null
     if [ $? != 0 ]; then
