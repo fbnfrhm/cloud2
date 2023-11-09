@@ -95,6 +95,9 @@ runUserScript() {
 
     # Upload script to the created EC2 instance
     instance_ip="$(getIpAddress)"
+    ###########################################
+    ###### MAKE CHANGES HERE FOR UPLOADS ######
+    ###########################################
     logInfo "Uploading user script..."
     scp -o StrictHostKeyChecking=no $script_path $USERNAME@$instance_ip:/home/$USERNAME/user.sh 2> /dev/null
     logInfo "Running user script..."
