@@ -94,3 +94,51 @@ terraform output <OUTPUT_NAME>
 - Die Konfiguration der AWS-CLI funktioniert nur bedingt im Skript
   - Ich vermute das liegt an den Eigenarten des AWS Lab-Credentials
 - Beim Abbruch des Skripts werden die Instanzen nicht zurückgesetzt und laufen weiter
+
+# Output nach dem ersten Starten
+```text
+[WARNING] ############################## WARNING #####################################
+[WARNING] Please make sure that your aws_credentials are set correctly in /home/fabian/.aws/credentials!
+[WARNING] Please make sure the file '/home/fabian/.ssh/id_rsa.pub' exists.
+[WARNING] If not create it using the command 'ssh-keygen' 
+[WARNING] ############################################################################
+[INFO] Press ENTER to continue or CTRL+C to exit
+
+[INFO] Remove old repository (to update the scripts)...
+[INFO] Get scripts to setup infrastructure from GitHub...
+Cloning into 'cloud2'...
+remote: Enumerating objects: 117, done.
+remote: Counting objects: 100% (117/117), done.
+remote: Compressing objects: 100% (84/84), done.
+remote: Total 117 (delta 43), reused 78 (delta 20), pack-reused 0
+Receiving objects: 100% (117/117), 17.37 KiB | 8.68 MiB/s, done.
+Resolving deltas: 100% (43/43), done.
+[INFO] Moving into the source folder of the repo...
+[INFO] Checking if 'terraform' is installed...
+[INFO] Checking if 'aws' is installed...
+[INFO] Applying terraform config...
+[WARNING] This leads to an error, you don't have to worry about it!
+╷
+│ Error: Inconsistent dependency lock file
+│ 
+│ The following dependency selections recorded in the lock file are inconsistent with the current configuration:
+│   - provider registry.terraform.io/hashicorp/aws: required by this configuration but no version is selected
+│ 
+│ To make the initial dependency selections that will initialize the dependency lock file, run:
+│   terraform init
+╵
+[WARNING] Terraform not initialized!
+[INFO] Initializing Terraform...
+[INFO] Retrying to apply terraform config...
+
+Please enter the path to the file you want to run (e.g. /path/to/script.sh):
+/home/fabian/test.sh                                        
+
+[INFO] Uploading user script...
+test.sh                                                                                                                                                    100%   63     0.5KB/s   00:00    
+[INFO] Running user script...
+[INFO] Destroying created instances...
+
+OUTPUT OF THE SCRIPT:
+Das Ergebnis der Berechnug 2+2 = 4
+```
